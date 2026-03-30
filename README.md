@@ -1,226 +1,128 @@
-# 🐍 The Open Source Audit — Python
-
-> **VIT | Open Source Software (NGMC) — Capstone Project**
-
----
-
-<div align="center">
+# OSS Audit — Python
+### Open Source Software Capstone Project | VIT NGMC
 
 | Field | Detail |
-|:---|:---|
-| 👩‍💻 **Student Name** | Chhavi Mangalwaniya |
-| 🎓 **Registration No** | 24BAI10296 |
-| 📚 **Course** | Open Source Software — NGMC |
-| 🖥️ **Software Audited** | Python (PSF Licence) |
-| 📅 **Submission Date** | 31st March 2026 |
-
-</div>
+|---|---|
+| **Student Name** | Chhavi Mangalwaniya |
+| **Registration No** | 24BAI10296 |
+| **Course** | Open Source Software (NGMC) |
+| **Chosen Software** | Python (PSF Licence) |
 
 ---
 
-## 📌 About This Project
+## About This Project
 
-This repository is the complete submission for the **Open Source Audit Capstone Project**. The subject of the audit is **Python** — one of the world's most widely used open-source programming languages, governed by the Python Software Foundation (PSF) and released under the permissive PSF Licence.
-
-The project consists of:
-- A **14-page written report** (PDF) covering Python's origin, licence, philosophy, Linux footprint, ecosystem, and a comparison with its proprietary alternative (MATLAB)
-- **Five shell scripts** that demonstrate practical Linux and Bash scripting skills connected to the themes of the audit
+This repository contains the shell scripts for the Open Source Audit capstone project. The subject of the audit is **Python** — one of the most widely used open-source programming languages in the world, governed by the Python Software Foundation and released under the permissive PSF Licence.
 
 ---
 
-## 📁 Repository Structure
+## Repository Contents
 
 ```
 oss-audit-24BAI10296/
-│
-├── 📄 README.md                                          ← You are here
-├── 📋 OSS_Audit_Report_24BAI10296_ChhaviMangalwaniya.pdf ← Full project report
-│
-├── 🔧 script1_system_identity.sh                        ← System welcome screen
-├── 🔧 script2_package_inspector.sh                      ← FOSS package checker
-├── 🔧 script3_disk_permission_auditor.sh                 ← Directory auditor
-├── 🔧 script4_log_analyzer.sh                           ← Log file analyser
-└── 🔧 script5_manifesto_generator.sh                    ← Manifesto generator
+├── script1_system_identity.sh        # System welcome screen with OS and licence info
+├── script2_package_inspector.sh      # FOSS package checker with case-based notes
+├── script3_disk_permission_auditor.sh# Directory permissions and disk usage auditor
+├── script4_log_analyzer.sh           # Log file keyword counter and summariser
+├── script5_manifesto_generator.sh    # Interactive open source manifesto generator
+└── README.md                         # This file
 ```
 
 ---
 
-## 📜 Script Descriptions
+## Script Descriptions
 
 ### Script 1 — System Identity Report
-**File:** `script1_system_identity.sh`
+Displays a formatted system welcome screen showing the Linux distribution, kernel version, current user and home directory, system uptime, current date/time, and the open-source licence covering the OS.
 
-Displays a formatted system welcome screen containing:
-- Linux distribution name (auto-detected from `/etc/os-release`)
-- Kernel version and system architecture
-- Currently logged-in user and their home directory
-- System uptime and current date/time
-- The open-source licence covering the OS and Python
-
-**Shell concepts demonstrated:**
-`variables` · `command substitution $()` · `echo` · `if [ -f ]` · `grep -oP` · `uname` · `whoami` · `date` · `uptime`
-
----
+**Concepts used:** variables, `echo`, command substitution `$()`, `uname`, `whoami`, `hostname`, `date`, `uptime`, conditional distro detection via `/etc/os-release`.
 
 ### Script 2 — FOSS Package Inspector
-**File:** `script2_package_inspector.sh`
+Checks whether Python (`python3`) is installed on the system using either `dpkg` (Debian/Ubuntu) or `rpm` (Fedora/RHEL). Displays version, licence, and summary information. Uses a `case` statement to print a philosophical note about several FOSS packages.
 
-Checks whether `python3` is installed on the system. Automatically detects whether the system uses `dpkg` (Debian/Ubuntu) or `rpm` (Fedora/RHEL) and queries the appropriate package manager. Uses a `case` statement to print open-source philosophy notes for several well-known FOSS packages.
-
-**Shell concepts demonstrated:**
-`if-then-else` · `case` statement · `dpkg -l` · `rpm -qi` · `grep -E` · `command -v` · pipe operators · `&>/dev/null`
-
----
+**Concepts used:** `if-then-else`, `case` statement, `dpkg`/`rpm`, `grep`, `command -v`, pipe operators.
 
 ### Script 3 — Disk and Permission Auditor
-**File:** `script3_disk_permission_auditor.sh`
+Loops through a predefined list of system directories and Python installation directories, reporting permissions, owner, group, and disk usage for each. Uses `ls -ld` and `awk` to extract fields.
 
-Loops through two arrays of directories — standard system directories and Python-specific installation paths — and reports permissions, owner, group, and disk usage for each. Falls back to Python's own `sysconfig` if standard paths are not found.
-
-**Shell concepts demonstrated:**
-`for` loop · bash arrays · `ls -ld` · `awk` field extraction · `du -sh` · `printf` for formatted output · `[ -d ]` directory check · `2>/dev/null`
-
----
+**Concepts used:** `for` loop, arrays, `ls -ld`, `du -sh`, `awk`, `cut`, directory existence check with `[ -d ]`.
 
 ### Script 4 — Log File Analyzer
-**File:** `script4_log_analyzer.sh`
+Reads a log file line by line, counts how many lines contain a given keyword (default: `error`), and prints the last 5 matching lines. Includes retry logic if the file is not found.
 
-**Usage:**
-```bash
-./script4_log_analyzer.sh <logfile> [keyword]
-```
-
-Reads a log file line by line, counting how many lines contain a specified keyword (default: `error`). Includes retry logic if the file is not found, prints the last 5 matching lines, and outputs a severity verdict based on the count.
-
-**Shell concepts demonstrated:**
-`while IFS= read -r` loop · `$1` and `$2` positional arguments · counter variables · arithmetic expansion `$(())` · retry loop (do-while style) · `grep -i` · `tail` · tiered `if-then-else` verdict
-
----
+**Concepts used:** `while read` loop, `if-then-else`, counter variables, `$1` and `$2` command-line arguments, `grep -i`, `tail`, retry loop with `read` for user input.
 
 ### Script 5 — Open Source Manifesto Generator
-**File:** `script5_manifesto_generator.sh`
+Asks the user three interactive questions and composes a personalised open source philosophy statement using their answers, saving it to a timestamped `.txt` file.
 
-An interactive script that asks the user three questions, then composes a personalised open-source philosophy statement using their answers. Saves the manifesto to a `.txt` file named after the current user with a date/time stamp.
-
-**Shell concepts demonstrated:**
-`read -p` interactive input · input validation with `[ -z ]` · string concatenation · writing to file with `>` and `>>` · `date` formatting · `cat` to display output · alias concept (commented demonstration)
+**Concepts used:** `read` for interactive input, string concatenation, writing to file with `>` and `>>`, `date` command, input validation, alias concept demonstrated via comment.
 
 ---
 
-## ⚙️ How to Run
-
-### Prerequisites
-
-- A Linux system (Ubuntu, Fedora, Debian, or similar)
-- Bash shell (pre-installed on all Linux distros)
-- `python3` installed (for Script 2's runtime check)
+## How to Run on Linux
 
 ### Step 1 — Clone the repository
-
 ```bash
 git clone https://github.com/<your-username>/oss-audit-24BAI10296.git
 cd oss-audit-24BAI10296
 ```
 
-### Step 2 — Make all scripts executable
-
+### Step 2 — Make scripts executable
 ```bash
-chmod +x *.sh
+chmod +x script1_system_identity.sh
+chmod +x script2_package_inspector.sh
+chmod +x script3_disk_permission_auditor.sh
+chmod +x script4_log_analyzer.sh
+chmod +x script5_manifesto_generator.sh
 ```
 
 ### Step 3 — Run each script
 
 ```bash
-# Script 1: System identity report (no arguments needed)
+# Script 1: System identity report
 ./script1_system_identity.sh
 
-# Script 2: FOSS package inspector (no arguments needed)
+# Script 2: Package inspector
 ./script2_package_inspector.sh
 
-# Script 3: Disk and permission auditor (no arguments needed)
+# Script 3: Disk and permission auditor
 ./script3_disk_permission_auditor.sh
 
-# Script 4: Log file analyser — provide a log file path and optional keyword
+# Script 4: Log file analyzer (provide a log file path)
 ./script4_log_analyzer.sh /var/log/syslog error
-
-# With a custom keyword:
+# Or with a custom keyword:
 ./script4_log_analyzer.sh /var/log/auth.log failed
 
-# Script 5: Manifesto generator — fully interactive, follow the prompts
+# Script 5: Manifesto generator (interactive)
 ./script5_manifesto_generator.sh
 ```
 
 ---
 
-## 🧰 Dependencies
+## Dependencies
 
-All scripts use only **standard Linux utilities** — no additional packages need to be installed beyond what ships with any Linux distribution.
+All scripts use only standard Linux utilities — no external packages need to be installed:
 
-| Utility | Purpose | Notes |
-|:---|:---|:---|
-| `bash` | Shell interpreter | Pre-installed everywhere |
-| `uname` | Kernel and architecture info | GNU coreutils |
-| `whoami`, `hostname` | User and host identification | GNU coreutils |
-| `date`, `uptime` | Time and uptime display | GNU coreutils |
-| `ls`, `du` | File and disk information | GNU coreutils |
-| `grep`, `awk`, `cut` | Text processing | GNU coreutils / gawk |
-| `printf`, `echo` | Formatted output | Shell built-ins |
-| `dpkg` | Package info on Debian/Ubuntu | Debian systems only |
-| `rpm` | Package info on Fedora/RHEL | RPM-based systems only |
-| `python3` | Runtime version check (Script 2) | Must be installed |
-
-> **Note:** Scripts 1–3 and 5 run without `python3` installed. Script 2 will report that python3 is not installed if it is absent — that is expected behaviour, not an error.
+| Utility | Purpose | Available on |
+|---|---|---|
+| `bash` | Shell interpreter | All Linux distros |
+| `uname` | Kernel/OS info | All Linux distros |
+| `whoami`, `hostname` | User/host info | All Linux distros |
+| `date`, `uptime` | Time/uptime | All Linux distros |
+| `dpkg` | Package info | Debian/Ubuntu |
+| `rpm` | Package info | Fedora/RHEL/CentOS |
+| `ls`, `du`, `df` | File/disk info | All Linux distros |
+| `grep`, `awk`, `cut` | Text processing | All Linux distros |
+| `python3` | Runtime version check | Must be installed |
 
 ---
 
-## 🖥️ Tested On
+## Notes
 
-| Distribution | Version | Status |
-|:---|:---|:---|
-| Ubuntu | 22.04 LTS | ✅ Tested |
-| Fedora | 38 | ✅ Compatible |
-| Debian | 12 (Bookworm) | ✅ Compatible |
-| CentOS Stream | 9 | ✅ Compatible |
+- Scripts are tested on Ubuntu 22.04 LTS and Fedora 38.
+- Script 4 requires a readable log file. On systems where `/var/log/syslog` is not present, use `/var/log/messages` or any plain-text log file.
+- Script 5 generates a file named `manifesto_<username>.txt` in the current directory.
 
 ---
 
-## 📝 Notes
-
-- **Script 4** requires a readable plain-text log file. On systems where `/var/log/syslog` does not exist (e.g., Fedora), use `/var/log/messages` or `/var/log/dnf.log` instead.
-- **Script 5** creates a file named `manifesto_<your-username>.txt` in the current working directory.
-- Scripts auto-detect the package manager (`dpkg` vs `rpm`) so they work across Debian and RPM-based distros without modification.
-
----
-
-## 📖 Report Summary
-
-The full written report (`OSS_Audit_Report_24BAI10296_ChhaviMangalwaniya.pdf`) covers:
-
-| Section | Content |
-|:---|:---|
-| **Part A — Origin & Philosophy** | Python's origin story, PSF licence analysis, four software freedoms, ethics of open source |
-| **Part B — Linux Footprint** | Installation methods, key directories, user/group model, service management, update pipeline |
-| **Part C — FOSS Ecosystem** | Dependencies, projects Python has enabled (NumPy, Django, TensorFlow), governance (PEP process, Steering Council) |
-| **Part D — OSS vs Proprietary** | Python vs MATLAB comparison table with written verdict |
-| **Scripts Documentation** | Code walkthrough, concepts used, and explanation for all five scripts |
-
----
-
-## 🔗 Useful Links
-
-- [Python Official Website](https://python.org)
-- [CPython Source Code (GitHub)](https://github.com/python/cpython)
-- [PSF Licence v2](https://python.org/psf/license)
-- [Python Package Index (PyPI)](https://pypi.org)
-- [PEP 20 — The Zen of Python](https://peps.python.org/pep-0020/)
-- [GNU Free Software Definition](https://gnu.org/philosophy/free-sw.html)
-
----
-
-<div align="center">
-
-*VIT | Open Source Software NGMC | 2025–26*
-
-*"Given enough eyeballs, all bugs are shallow." — Eric S. Raymond*
-
-</div>
+*VIT | Open Source Software NGMC | 2024–25*
